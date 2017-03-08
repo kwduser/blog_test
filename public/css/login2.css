@@ -162,8 +162,8 @@ input::-ms-clear {
 	z-index:3;
 }
 .web_qr_login {
-	position:relative;
-	
+	position:absolute;
+	background: #fff;
 	overflow:hidden;
 }
 
@@ -237,4 +237,16 @@ a.zcxy {text-decoration: underline;line-height:58px;margin-left:15px;color: #959
 .web_login .uinArea {
 height: 60px;}
 .header .switch{left:70px;}
-
+.loginreg{
+	display: none;
+}
+.loginreg.current{
+	display: block;
+}
+#qlogin{
+	position: absolute;
+	left: 0px;
+	height: 0px;
+	background: #fff;
+	height: initial;
+}
