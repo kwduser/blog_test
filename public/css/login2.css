@@ -250,3 +250,9 @@ height: 60px;}
 	background: #fff;
 	height: initial;
 }
+.resultdata{
+	font-size: 20px;
+	color: #e92332;
+	text-align: center;
+	line-height: 40px;
+}

@@ -1,6 +1,6 @@
 var express=require('express');
 var router=express.Router();
-
+var User=require('../models/user.js');
 //用户注册逻辑
 	//用户名不能为空
 	//密码不能为空
@@ -43,9 +43,30 @@ router.post('/user/register',function(req,res,next){
 		res.json(responseData);
 		return;
 	}
-	//注册成功
-	responseData.message='注册成功';
-	res.json(responseData);
+	/**
+	 * 查询 数据库中 用户名是否被注册 
+	 */
+	User.findOne({
+		username:username
+	}).then(function(userinfo){
+		//数据库中没有该记录 userinfo===null表明数据库中已有该记录
+		if(userinfo){
+			responseData.code=3;
+			responseData.message='用户名已经被注册了';
+			res.json(responseData);
+		}
+		//保存用户注册数据记录
+		var user=new User({
+			username:username,
+			password:password
+		});
+		return user.save();
+	}).then(function(newuserinfo){
+		console.log(newuserinfo)
+		responseData.code=4;
+		responseData.message='注册成功';
+		res.json(responseData);
+	})
 
 });
 

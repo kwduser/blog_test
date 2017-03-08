@@ -1,5 +1,6 @@
 var mongoose=require('mongoose');
-var blogSchema = new Schema({
-  name:  String,
+var Schema = mongoose.Schema
+module.exports = new Schema({
+  username:  String,
   password: String,
 });

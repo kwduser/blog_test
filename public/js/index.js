@@ -22,7 +22,11 @@ $(function(){
 			},
 			dataType:'json',
 			success:function(result){
-				console.log(result)
+				//console.log(result)
+				$('.resultdata').html(result.message)
+				if(result.code==4){
+					alert('注册成功')
+				}
 			}
 		})
 	})
