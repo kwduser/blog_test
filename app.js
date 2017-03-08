@@ -19,6 +19,12 @@ app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
 //链接mongoose数据库
-mongoose.connect();
+mongoose.connect('mongodb://localhost:27017/test',function(err){
+	if(err){
+		console.log('数据库链接失败')
+		return;
+	}
+	console.log('数据库链接成功')
+	app.listen(3000);
+});
 //监听3000端口
-app.listen(3000);
