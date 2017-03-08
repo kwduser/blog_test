@@ -5,6 +5,8 @@ var swig=require('swig');
 var app=express();
 var mongoose=require('mongoose');
 
+app.use('/public',express.static(__dirname+'/public'))
+
 app.engine('html',swig.renderFile);
 //设置模板文件存放的目录 第一个参数必须是view 第二个是目录
 app.set('views','./views');
@@ -18,13 +20,19 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
+
+
 //链接mongoose数据库
-mongoose.connect('mongodb://localhost:27017/test',function(err){
+mongoose.connect('mongodb://localhost:27017/blog_test',function(err){
 	if(err){
 		console.log('数据库链接失败')
-		return;
+
+	}else{
+		console.log('数据库链接成功')
+		//监听3000端口
+		app.listen(3000);
 	}
-	console.log('数据库链接成功')
-	app.listen(3000);
+	
 });
-//监听3000端口
+
+
