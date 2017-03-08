@@ -4,6 +4,7 @@ var express=require('express');
 var swig=require('swig');
 var app=express();
 var mongoose=require('mongoose');
+var bodyParser = require('body-parser');
 
 app.use('/public',express.static(__dirname+'/public'))
 
@@ -14,12 +15,13 @@ app.set('views','./views');
 app.set('view engine','html')
 //开发中取消缓存
 swig.setDefaults({cache:false});
+//bodyParser设置 处理POST请求(放在路由设置前面)
+app.use(bodyParser.urlencoded({extended:true}))
 
 //路由设置 不同模块加载
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
-
 
 
 //链接mongoose数据库
