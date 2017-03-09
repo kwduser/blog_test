@@ -25,8 +25,25 @@ $(function(){
 				//console.log(result)
 				$('.resultdata').html(result.message)
 				if(result.code==4){
-					alert('注册成功')
+					//alert('注册成功')
+					$('#qlogin').removeClass('current');
+					$('#web_qr_login').addClass('current');
 				}
+			}
+		})
+	})
+
+	$('#denglu').on('click',function(){
+		$.ajax({
+			type:'post',
+			url:'/api/user/login',
+			data:{
+				username:$('#user').val(),
+				password:$('#passwd').val()
+			},
+			dataType:'json',
+			success:function(result){
+				
 			}
 		})
 	})

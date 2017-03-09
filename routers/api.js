@@ -18,7 +18,9 @@ router.use(function(req,res,next){
 	next();
 })
 
-
+/**
+ * 注册
+ */
 router.post('/user/register',function(req,res,next){
 	//console.log(req.body);
 	var username=req.body.username;
@@ -69,5 +71,19 @@ router.post('/user/register',function(req,res,next){
 	})
 
 });
+/**
+ *登陆
+ */
+router.post('/api/user/login',function(req,res){
+	var username=req.body.username;
+	var password=req.body.password;
+	if(username==''||password==''){
+		responseData.code=0;
+		responseData.message='用户名或密码不能为空';
+		res.json(responseData);//把这个对象转成json返给前端 res.json()方法
+		return;
+	}
+
+})
 
 module.exports=router;
